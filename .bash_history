@@ -1,0 +1,12 @@
+zsh
+exit
+startx
+zsh
+zsh
+zsh
+pacmixer
+pacmd
+clear
+pacmixer
+zsh
+zsh
