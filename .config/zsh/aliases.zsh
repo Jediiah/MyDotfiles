@@ -119,3 +119,5 @@ alias light='sudo light -S'
 
 alias cmix='cmatrix -abr'
 alias invaders='sh ~/.scripts/invaders'
+
+alias splitytb='python ~/.scripts/splitter.py'
