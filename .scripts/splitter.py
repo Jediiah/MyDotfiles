@@ -1,8 +1,12 @@
 from __future__ import unicode_literals
 import os, sys, re, youtube_dl, wget, ffmpeg, taglib
 
+# Permet de télécharger et découper des albums complets depuis youtube.
+# Ne marche pour l'instant que sur la chaine https://www.youtube.com/c/666MrDoom
 
-dirBase = "/run/media/jediiah/My Book/Musique_WD/Riff Dealer/YoutubeDL"
+#utilisation : python splitter.py <url>
+
+dirBase = "~/Musique"
 albumDir = ""
 
 def getDescriptionInfos(albumInfos=dict):
