@@ -1,0 +1,176 @@
+#!/bin/bash
+
+FUNK=(
+    "Funkadelic"
+    "Jazzy Things/George.Duke-Feel.1974.Album.Deezer.FLAC-CyEg"
+    "Jazzy Things/George.Duke-Feel.1974.Album.Deezer.FLAC-CyEg"
+    "Jazzy Things/Grandmaster Flash & The Furious Five-The Message (1983)-Expanded Edition-2010"
+    "Musique_WD/Bob_Marley_Wailers/Bob Marley & The Wailers - Legend – The Best Of Bob Marley & The Wailers [Qobuz] [FLAC] [96khz, 24-bit]"
+    "Sly_And_The_Family_Stone/1970 - Greatest Hits [2015 Audio Fidelity SACD Remaster] Flac"
+    "Thundercat/Thundercat - Apocalypse [Qobuz] [FLAC] [44.1khz, 16-bit]"
+)
+JAZZ=(
+    "Thundercat" 
+    "Al Di Meola"
+    "Electric Octopus"
+    "Herbie Hancock/Herbie Hancock - Head Hunters [Qobuz] [FLAC] [96khz, 24-bit]"
+    "Herbie Hancock/1985-& Musa Suso-Village Life-{Sony SRCS 7172}-1996"
+    "Hiromi Uehara/Hiromi - The Trio Project - Move - 2012"
+    "Jaco Pastorius"
+    "Jazzy Things/Ravi Shankar - The Essential"
+    "Jazzy Things/The Comet Is Coming - Trust In The Lifeforce Of The Deep Mystery"
+    "Jazzy Things/Christian Scott - Stretch Music  (2015) [FLAC]"
+    "Lockwood, Top, Wander, Wiedman"
+    "Magma/1970 - Kobaïa"
+    "Weidorje - Weidorje (1978) (ex-Magma), France @FLAC"
+    "Mahavishnu Orchestra"
+    "Musique_WD/Victor Wooten/Victor Wooten - A Show of Hands 15"
+    "/Musique_WD/Wayne Shorter/1974-Native Dancer (Remaster)"
+    "Return to Forever/1976 [1999] Romantic Warrior"
+    "Stanley Clarke/1974 - Stanley Clarke"
+    "Stanley Clarke/1975 - Journey To Love"
+    "Weather Report"
+)
+ROCK=(
+    "Doors (The)" 
+    "Kinks (The)" 
+    "Beatles(The)/Millennium UK Collection (1980's PMC Mono Box & MFSL Stereo Box)/The Beatles - 1967 - Sgt. Pepper's ... Band (Mono & Stereo) [Millennium Remaster 2002]"
+    "Captain Beefheart"
+    "David_Peel"
+    "Frank Zappa/One Size Fits All"
+    "Frank Zappa/1969 - Hot Rats"
+    "Frank Zappa/Joe's Garage"
+    "Frank Zappa/1972 - Waka-Jawaka - Hot Rats"
+    "Gong"
+    "Jeff Beck"
+    "Jimmi Hendrix/Jimi Hendrix . Electric Ladyland (1968)"
+    "Jimmi Hendrix/Jimi Hendrix . Are You Experienced (1967)"
+    "Jimmi Hendrix/The Jimi Hendrix Experience 1967 Axis Bold As Love"
+    "King Crimson/In the Court of the Crimson King - King Crimson - 2009"
+    "Led Zeppelin"
+    "Musique_WD/Stevie Ray Vaughan & Double Trouble"
+    "Patty Smith/1975 - Horses Flac"
+    "Pink Floyd/Pink Floyd - A Saucerful Of Secrets (1968) {Sony Records SICP-5402}"
+    "Pink Floyd/1967 - Pink Floyd - The Piper At The Gates Of Dawn (2016, Pink Floyd, PFRLP1, US, 24-192)"
+)
+ROCK_NOUV=(
+    "King Gizzard And The Lizard Wizard"
+    "All_Them_Witches"
+    "Black Sabbath/Black Sabbath - Paranoid {2016 Deluxe Ed.}/Disc 1"
+    "Kadavar"
+    "Mars Red Sky"
+    "Melvins/[1889] The Melvins - OZMA"
+    "Motôrhead/On Parole"
+    "Musique_WD/Rock_Indie/Tropical_Fuck_Storm"
+    "My Slepping Karma/My Sleeping Karma - Moksha (2015)"
+    "Naxatras - Self-Titled (2015) [24-48 FLAC]"
+    "Nirvana/Nirvana/Nirvana - Bleach (2009, SP834, 20th Anniversary Edition)"
+    "Om/Om - Advaitic Songs"
+    "Psychedelic Witchcraft/Psychedelic Witchcraft - Magick Rites and Spells (2017)"
+    "Rage Against The Machine/Rage Against The Machine - Rage Against The Machine (1992) [2016_HDTracks 24-44.1]"
+    "Red Hot Chili Peppers/Studio FLAC/1987 - The Uplift Mofo Party Plan"
+    "Samsara Blues Experiment/2010 - Long Distance Trip"
+    "Sleep/Sleep - Sleep's Holy Mountain"
+    "The Black Keys/El Camino"
+    "The Stooges/1970 - Fun House"
+    "The Stooges/1969 - The Stooges"
+    "Vibravoid/41 - Vibravoid – Minddrugs (2011) (m)"
+    "Musique_WD/Riff Dealer/abrahama - Reflections in the Bowels of a Bird"
+    "Musique_WD/Riff Dealer/Devil Electric - The Gods Below (EP) (2016)"
+    "Musique_WD/Riff Dealer/Electric Moon - Theory Of Mind"
+    "Musique_WD/Riff Dealer/II"
+    "Musique_WD/Riff Dealer/Monolord - Empress Rising (2014)"
+)
+
+dir_disk="/run/media/jediiah/LeDisk/Musique/"
+regex_flac='.*\/(.*)\.flac'
+regex_rest='.*\/(.*).*'
+
+# find my/path -type f -regex ".*\.\(flac\)" >> file_out.txt     append to a text file the full path of flac files in my/path
+# grep "" -c file_path      get number of lines in file_path
+
+: 
+# Génération des fichier texte listant tous les fichiers audio
+echo "" > FUNK.txt
+for ((i = 0; i < ${#FUNK[@]}; i++)); do
+    find "$dir_disk${FUNK[$i]}" -type f -regex ".*\.\(flac\|mp3\)" >> FUNK.txt
+done
+
+echo "" > JAZZ.txt
+for ((i = 0; i < ${#JAZZ[@]}; i++)); do
+    find "$dir_disk${JAZZ[$i]}" -type f -regex ".*\.\(flac\|mp3\)" >> JAZZ.txt
+done
+
+echo "" > ROCK.txt
+for ((i = 0; i < ${#ROCK[@]}; i++)); do
+    find "$dir_disk${ROCK[$i]}" -type f -regex ".*\.\(flac\|mp3\)" >> ROCK.txt
+done
+
+echo "" > ROCK_NOUV.txt
+for ((i = 0; i < ${#ROCK_NOUV[@]}; i++)); do
+    echo ${ROCK_NOUV[$i]}
+    find "$dir_disk${ROCK_NOUV[$i]}" -type f -regex ".*\.\(flac\|mp3\)" >> ROCK_NOUV.txt
+done
+
+
+# Génération aléatoire des playlists et copie/conversion des fichiers audio
+#nbr_lignes=$(grep "" -c FUNK.txt)
+#python randomPick.py $nbr_lignes FUNK.txt 1200
+dir_dest='/home/jediiah/.scripts/USB/FUNK/'
+
+while read LINE; do
+    if [[ $LINE =~ $regex_flac ]]; then
+        echo ---------------------------
+        < /dev/null ffmpeg -loglevel warning -i "$LINE" -b:a 320k "$dir_dest${BASH_REMATCH[1]}.mp3"
+    else
+        [[ $LINE =~ $regex_rest ]]
+        cp "$LINE" "$dir_dest${BASH_REMATCH[1]}"
+    fi
+done < FUNK.txt
+
+
+
+#nbr_lignes=$(grep "" -c JAZZ.txt)
+#python randomPick.py $nbr_lignes JAZZ.txt 900
+dir_dest='/home/jediiah/.scripts/USB/JAZZ/'
+
+while read LINE; do
+    if [[ $LINE =~ $regex_flac ]]; then
+        echo ---------------------------
+        < /dev/null ffmpeg -loglevel warning -i "$LINE" -b:a 320k "$dir_dest${BASH_REMATCH[1]}.mp3"
+    else
+        [[ $LINE =~ $regex_rest ]]
+        cp "$LINE" "$dir_dest${BASH_REMATCH[1]}"
+    fi
+done < JAZZ.txt
+
+
+#nbr_lignes=$(grep "" -c ROCK.txt)
+#python randomPick.py $nbr_lignes ROCK.txt 800
+dir_dest='/home/jediiah/.scripts/USB/ROCK/'
+
+while read LINE; do
+    if [[ $LINE =~ $regex_flac ]]; then
+        echo ---------------------------
+        < /dev/null ffmpeg -loglevel warning -i "$LINE" -b:a 320k "$dir_dest${BASH_REMATCH[1]}.mp3"
+    else
+        [[ $LINE =~ $regex_rest ]]
+        cp "$LINE" "$dir_dest${BASH_REMATCH[1]}"
+    fi
+done < ROCK.txt
+
+
+#nbr_lignes=$(grep "" -c ROCK_NOUV.txt)
+#python randomPick.py $nbr_lignes ROCK_NOUV.txt 800
+dir_dest='/home/jediiah/.scripts/USB/ROCK_NOUV/'
+
+while read LINE; do
+    if [[ $LINE =~ $regex_flac ]]; then
+        echo ---------------------------
+        < /dev/null ffmpeg -loglevel warning -i "$LINE" -b:a 320k "$dir_dest${BASH_REMATCH[1]}.mp3"
+    else
+        [[ $LINE =~ $regex_rest ]]
+        cp "$LINE" "$dir_dest${BASH_REMATCH[1]}"
+    fi
+done < ROCK_NOUV.txt
+
